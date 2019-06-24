@@ -17,8 +17,8 @@ class OrderController extends Controller
     {
         $user = Order::whereHas('products')->with('products')->first();
         $customer = $user->customers;
-        $user->prod_name = $user->products->first()->name;
-        return view('user.order.order',compact('user','customer'));
+        $users = $user->products;
+        return view('user.order.order',compact('users','customer'));
     }
 
     /**

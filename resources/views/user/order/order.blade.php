@@ -62,8 +62,11 @@
                         <div class="modal-header">
                         </div>
 
-                    {{$customer}}:{{$user->prod_name}}
+                    {{$customer}}:
+                    @foreach($users as $user)
 
+                 {{$user->name}}
+                        @endforeach
                     </div>
                 </div>
             </div>

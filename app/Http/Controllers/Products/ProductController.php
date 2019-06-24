@@ -6,7 +6,7 @@ use App\Repositories\OrdersRepository;
 use App\Repositories\ProductsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
@@ -32,6 +32,7 @@ class ProductController extends Controller
     }
 
 
+
     /**
      * @param Request $request
      * @param ProductsRepository $productRepo
@@ -45,7 +46,7 @@ class ProductController extends Controller
             $user = $productRepo->create($data);
             $category = Order::find([5]);
             $user->orders()->attach($category);
-            activity()->log($category->first()->id);
+            activity()->log(Auth::user()->name.' '.$category->first()->id);
             return response()->json([
                 'success' => 1,
                 'message' => 'You successfully created product',

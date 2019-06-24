@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->integer('price');
-            $table->enum('in_stock', ['true', 'false'])->default('false');
+            $table->enum('in_stock', ['in', 'out'])->default('out');
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Orders;
 
 use App\Http\Controllers\Controller;
 
+use App\Models\Orders\Order;
 use App\Repositories\OrdersRepository;
 
 class OrderController extends Controller
@@ -14,8 +15,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-
-        return view('user.order.order');
+        $user = Order::whereHas('products')->with('products')->first();
+        $customer = $user->customers;
+        $user->prod_name = $user->products->first()->name;
+        return view('user.order.order',compact('user','customer'));
     }
 
     /**

@@ -10,6 +10,6 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'price' => $faker->randomNumber(6),
-        'in_stock' => $faker->randomElement(['true', 'false'])
+        'in_stock' => $faker->randomElement(['in', 'out'])
     ];
 });
